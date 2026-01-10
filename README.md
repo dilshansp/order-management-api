@@ -14,41 +14,45 @@ This project is designed as a recruiter-ready portfolio project to demonstrate r
 
 📌 Features
 
-  🔷 Core Features
-    - Create, Read, Update, Delete (CRUD) Orders  
-    - Each Order includes multiple Order Items  
-    - Automatic Total Amount calculation  
-    - SQL Server database via EF Core 8  
-    - Repository pattern  
-    - Full separation of concerns
+🔷 Core Features
+- Create, Read, Update, Delete (CRUD) Orders  
+- Each Order includes multiple Order Items  
+- Automatic Total Amount calculation  
+- SQL Server database via EF Core 8  
+- Repository pattern  
+- Full separation of concerns
 
-  🔒 Authentication & Authorization
-    - JWT Authentication (access tokens)  
-    - Demo user accounts:
-      - 'admin' → full access (including delete)
-      - 'user' → restricted access (no delete)
-    - Role-based access control (RBAC)
-    - Secure endpoints using '[Authorize]' and '[Authorize(Roles = "...")]'
 
-  🧱 Architecture
-    - Clean Architecture  
-    - CQRS (Command/Query Responsibility Segregation)  
-    - MediatR for request handling  
-    - AutoMapper for DTO mapping  
-    - FluentValidation for business rules  
-    - Repository + Unit of Work pattern
+🔒 Authentication & Authorization
+- JWT Authentication (access tokens)  
+- Demo user accounts:
+    - 'admin' → full access (including delete)
+    - 'user' → restricted access (no delete)
+- Role-based access control (RBAC)
+- Secure endpoints using '[Authorize]' and '[Authorize(Roles = "...")]'
 
-  🧪 Automated Testing
-    - xUnit Tests  
-    - Moq mocking  
-    - FluentAssertions  
-    - EF Core InMemory tests  
-    - Covers Handlers + Repository
+
+🧱 Architecture
+- Clean Architecture  
+- CQRS (Command/Query Responsibility Segregation)  
+- MediatR for request handling  
+- AutoMapper for DTO mapping  
+- FluentValidation for business rules  
+- Repository + Unit of Work pattern
+
+
+🧪 Automated Testing
+- xUnit Tests  
+- Moq mocking  
+- FluentAssertions  
+- EF Core InMemory tests  
+- Covers Handlers + Repository
 
 ---
 
 📂 Project Structure (Clean Architecture)
 
+```
 OrderManagementSolution
 |
 src
@@ -75,49 +79,23 @@ src
 ├── Controllers
 ├── Program.cs
 └── appsettings.json
-
+```
 
 ---
 
 🧱 Clean Architecture Diagram
-
+```
               +--------------------------+
               |      Presentation        |
               |       (API Layer)        |
               +-------------+------------+
                             |
                             v
-+-----------------+ +------|-------+ +---------------------+
-| Domain |<-----| Application |<-----| Infrastructure |
-| (Entities) | | (CQRS, DTOs)| | (EF Core, Repos, JWT)|
-+-----------------+ +-------------+ +---------------------+
-
----
-
-🔐 Authentication (JWT)
-
-The API uses JWT Bearer Authentication with role-based authorization.
-
-  🔑 Login Endpoint
-
-    POST /api/auth/login
-
-  Example Request
-
-  json
-  {
-    "username": "admin",
-    "password": "Admin123!"
-  }
-
-  Example Response
-  {
-    "token": "eyJhbGciOiJIUzI1NiIsInR...",
-    "role": "Admin"
-  }
-
-  Use the token in Swagger:
-  Bearer <token_here>
+ +-----------------+ +------|-------+ +---------------------+
+ | Domain | <----- | Application | <----- | Infrastructure |
+ | (Entities) |   | (CQRS, DTOs)|  | (EF Core, Repos, JWT) |
+ +-----------------+ +-------------+ +---------------------+
+```
 
 ---
 
@@ -136,8 +114,36 @@ The API uses JWT Bearer Authentication with role-based authorization.
 | Testing      | xUnit, Moq, FluentAssertions        |
 | API Docs     | Swagger / OpenAPI                   |
 
+---
 
+🔐 Authentication (JWT)
 
+The API uses JWT Bearer Authentication with role-based authorization.
+
+  🔑 Login Endpoint
+
+    POST /api/auth/login
+
+  Example Request
+```
+  json
+  {
+    "username": "admin",
+    "password": "Admin123!"
+  }
+
+  Example Response
+  {
+    "token": "eyJhbGciOiJIUzI1NiIsInR...",
+    "role": "Admin"
+  }
+```
+  Use the token in Swagger:
+  ```
+  Bearer <token_here>
+```
+
+---
 
 🗂 API Endpoints
 
@@ -166,35 +172,38 @@ Orders
 🛠 Getting Started (Local Setup)
 
 1️⃣ Clone the repository
-
-git clone https://github.com/yourusername/OrderManagementAPI.git
+```
+git clone https://github.com/dilshansp/OrderManagementAPI.git
 cd OrderManagementAPI
-
+```
 2️⃣ Configure SQL Server
 
 Update your connection string in:
 OrderManagement.API/appsettings.json
 
 Example:
+```
 "DefaultConnection": "Server=localhost\\SQLEXPRESS;Database=OrderDb;Trusted_Connection=True;TrustServerCertificate=True;"
-
+```
 3️⃣ Run EF Core Migrations
 
 In Visual Studio → Package Manager Console:
-
+```
 Add-Migration InitialCreate -Project OrderManagement.Infrastructure -StartupProject OrderManagement.API
 Update-Database
-
+```
 4️⃣ Run the API
-
+```
 dotnet run --project OrderManagement.API
-
+```
 Open Swagger:
+```
 https://localhost:xxxx/swagger
-
+```
+---
 
 📂 Test Project Structure
-
+```
 OrderManagementSolution
 |
 tests
@@ -202,18 +211,19 @@ tests
 | |___ Commands
 | |___ Queries
 | |___ Repositories
-
+```
 
 🧪 Running Tests
 
 From root directory:
+```
 dotnet test
-
+```
 Tests include:
-✔ Command handlers
-✔ Query handlers
-✔ Repository tests (InMemory DB)
-✔ Validation tests
+  - ✔ Command handlers
+  - ✔ Query handlers
+  - ✔ Repository tests (InMemory DB)
+  - ✔ Validation tests
 
 
 ---
@@ -242,14 +252,14 @@ JwtTokenService
 
 📅 Roadmap / Future Enhancements
 
- Refresh Tokens
- Serilog structured logging
- Docker support (API + SQL Server)
- Auto-deploy pipeline (GitHub Actions)
- Angular/React front-end
- Pagination, filtering, sorting
- User management system
- Multi-tenant support
+ - Refresh Tokens
+ - Serilog structured logging
+ - Docker support (API + SQL Server)
+ - Auto-deploy pipeline (GitHub Actions)
+ - Angular/React front-end
+ - Pagination, filtering, sorting
+ - User management system
+ - Multi-tenant support
 
 ---
 
@@ -266,6 +276,14 @@ This project is open-source and free to use.
 
 ---
 
+👤 Author
+
+Sebastian Dilshan Pandithasekera
+.NET / C# Developer / Web Developer & Technical Business Analyst
+Melbourne, Australia
+
+---
+
 ⭐ Final Notes
 
 This project was created as a portfolio piece to demonstrate:
@@ -279,5 +297,5 @@ Modern coding standards
 
 If you’re reviewing this as a hiring manager or engineer, feel free to reach out!
 
-
+---
 
