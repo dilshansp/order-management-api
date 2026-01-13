@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 
-🚀 Order Management API (.NET 8, Clean Architecture, EF Core, JWT)
+## 🚀 Order Management API (.NET 8, Clean Architecture, EF Core, JWT)
 
 A fully production-style Order Management REST API, built using .NET 8, Clean Architecture, CQRS, EF Core 8, SQL Server, JWT Authentication, Logging, and xUnit tests.
 
